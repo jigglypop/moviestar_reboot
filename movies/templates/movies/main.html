@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+
+<head>
+    {% load static %} {% load bootstrap4 %}
+
+    <meta charset="utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <link href="{% static 'css/vide.css' %}" rel='stylesheet' type='text/css'>
+    <script src="{% static 'js/jquery.vide.js' %}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="{% static 'css/html5reset-1.6.1.css' %}" type="text/css" media="screen,print">
+    <link rel="stylesheet" rel="stylesheet" href="{% static 'css/novacancy.css' %}" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.novacancy.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#no').novacancy({
+                'reblinkProbability': 0.1,
+                'blinkMin': 0.2,
+                'blinkMax': 0.6,
+                'loopMin': 8,
+                'loopMax': 10,
+                'color': '#ffffff',
+                'glow': ['0 0 80px #ffffff', '0 0 30px #008000', '0 0 6px #0000ff']
+            });
+
+            $('#vacancy').novacancy({
+                'blink': 1,
+                'off': 1,
+                'color': 'white',
+                'glow': ['0 0 80px Red', '0 0 30px FireBrick', '0 0 6px DarkRed']
+            });
+        });
+    </script>
+    <style>
+        @font-face {
+            color: white;
+            font-family: SCDream6;
+            src: url("{% static 'fonts/SCDream6.otf' %}") format('truetype');
+        }
+        #movie{
+            text-align: center;
+        }
+
+        #vacancy {
+            font-family: SCDream6;
+            position: relative;
+            z-index: 10;
+            font-size: 150px;
+            top:30%;
+        }
+    </style>
+</head>
+
+<body id="movie" data-vide-bg="{% static 'video/intro.mp4' %}">
+    <a id="vacancy" href="{% url 'movies:index' %}" style="text-decoration:none;">MOVIE STAR</a> 
+    {% comment %} 
+    {% endcomment %}
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

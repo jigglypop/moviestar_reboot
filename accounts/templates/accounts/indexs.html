@@ -1,0 +1,13 @@
+{% extends 'movies/base.html' %}
+{% block body %}
+
+<a href="{% url 'movies:index'%}">돌아가기</a>
+{% for user in Users %}
+<br>
+<h1>
+<a href="{% url 'accounts:profile' user.pk %}">{{user.username}}</a>
+</h1>
+
+{% endfor %}
+
+{% endblock  %}

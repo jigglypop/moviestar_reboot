@@ -1,0 +1,124 @@
+{% extends 'movies/logbase.html' %}
+{% block body %}
+{% load bootstrap4%}
+
+<form action="">
+
+    <div class="container">
+    <h1>{{user_profile.username}}의 프로필</h1>
+    <hr>
+        <div class="row">
+            <div class="row-md-3">
+            <h3>프로필</h3>
+                <a class="log" href="{% url 'accounts:update' %}">회원정보수정</a>
+                <a class="log" href="{% url 'accounts:password_change' %}">비밀번호수정</a>  
+            </div>
+            <div class="row-md-3">
+            <h3>팔로우 하기</h3>
+                         
+
+                <h2>팔로우 : {{user_profile.followings.all.count}}</h2>
+                <h2>팔로워 : {{user_profile.followers.all.count}}</h2>
+
+                <a href="{% url 'accounts:follow' user_profile.pk %}">
+                {% if user_profile.user != require.user %}
+                    {% if user in user_profile.followers.all %}
+                    <p>팔로우 취소</p>
+                    {% else %}
+                    <p>팔로우</p>
+                    {% endif %}
+                {% endif %}
+                </a>
+            </div>
+            <div class="row-md-3">
+            <h3>추천 영화</h3>
+            {% for movie in my_movies %}
+                <div class="container">
+                <a href="{% url 'movies:detail' movie.pk %}">#{{movie.title}}
+                </div>
+            {% endfor %}
+            </div>
+            <div class="row-md-3">
+                <h3>내가 좋아요 한 영화</h3>
+                {% for movie in user_profile.like_movies.all %}
+                <p><a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</p>
+                <img src="{{movie.poster_url}}" alt="">
+                {% endfor %}
+
+            </div>
+        </div>         
+    </div>
+</form>
+
+
+<style>
+hr {
+    height:3px;
+    background-color: #ffffff;
+}
+    .row{
+        position: absolute;
+        left: 10%;
+    }
+    .row-md-3 {
+        margin:20px 50px 20px 50px;
+    }
+    .container {
+        margin:0 auto;
+    }
+    img {
+        width: 100px;
+    }
+
+    a {
+        font-size:15px;
+        color: white;
+    }
+
+    .log {
+        bottom: 50px;
+        right: 50px;
+        font-size: 15px;
+        color: rgb(248, 248, 248);
+        font-family: SCDream6;
+        text-shadow: 0 5px 15px rgb(0, 0, 0);
+    }
+
+    h3 {
+        font-size: 30px;
+        color: rgb(200, 66, 66);
+        font-family: SCDream6;
+        text-shadow: 0 5px 15px rgb(0, 0, 0);
+    }
+
+    h2 {
+        font-size: 30px;
+        color: rgb(248, 248, 248);
+        font-family: SCDream6;
+        text-shadow: 0 5px 15px rgb(0, 0, 0);
+    }
+
+    h1 {
+        top: 50px;
+        font-size: 70px;
+        color: rgb(248, 248, 248);
+        font-family: SCDream6;
+        text-shadow: 0 5px 15px rgb(0, 0, 0);
+    }
+
+    form {
+        font-family: SCDream6;
+        position: absolute;
+        top: 100px;
+        left: 3%;
+        padding: 50px 10px 20px 10px;
+        background: rgba(0, 0, 0, 0.7);
+        overflow: auto;
+        width: 1800px;
+        height: 800px;
+        text-shadow: 0 5px 15px rgb(0, 0, 0);
+        color: white;
+        text-align: center;
+    }
+</style>
+{% endblock %}

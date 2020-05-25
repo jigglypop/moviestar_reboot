@@ -1,0 +1,39 @@
+{% extends 'movies/logbase.html' %}
+{% load bootstrap4 %}
+{% block body %}
+
+<form class="mx-auto ml-auto" action="" method='POST'>
+<h1>SIGNUP</h1>
+{% csrf_token %}
+{% bootstrap_form form %}
+<input type="submit">
+</form>
+<style>
+    h1 {
+        position: absolute;
+        top:20px;
+        left: 40%;
+        font-size: 100px;
+        color: rgb(248, 248, 248);
+        font-family: SCDream6;
+        text-shadow: 0 5px 15px rgb(0, 0, 0);
+        text-align: center;
+    }
+    form {
+        font-family: SCDream6;
+        position: absolute;
+        top: 50px;
+        left: 3%;
+        padding: 150px 600px 20px 600px;
+        background: rgba( 0, 0, 0, 0.7);
+        overflow: auto;
+        margin: 0 auto;
+        text-align: center;
+        width: 1800px;
+        height:850px;
+        text-shadow: 0 5px 15px rgb(0, 0, 0);
+        color:white;
+    }
+</style>
+
+{% endblock  %}

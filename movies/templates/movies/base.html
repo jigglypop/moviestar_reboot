@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <style>
+        .li {
+            color: black;
+        }
+        
+        div {
+            color: white;
+        }
+        
+        .me {
+            top: 20px;
+            left: 5px;
+            font-size: 25px;
+            margin-left: 5px;
+        }
+        
+        #menu {
+            position: absolute;
+            top: 5px;
+            left: 2%;
+        }
+        
+        .nav {
+            top: 5px;
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Easiest jQuery Tooltip Ever">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="{% static 'css/jquery.gridder.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/demo.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/jquery.pagepiling.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tooltip.css' %}">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Armata" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="{% static 'js/jquery.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/main.js' %}" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fullpage.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/page.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tooltipster.bundle.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/html5reset-1.6.1.css' %}" type="text/css" media="screen,print">
+    <link href="{% static 'css/novacancy.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.novacancy.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#no').novacancy({
+                'reblinkProbability': 0.1,
+                'blinkMin': 0.2,
+                'blinkMax': 0.6,
+                'loopMin': 8,
+                'loopMax': 10,
+                'color': '#ffffff',
+                'glow': ['0 0 80px #ffffff', '0 0 30px #008000', '0 0 6px #0000ff']
+            });
+
+            $('#vacancy').novacancy({
+                'blink': 1,
+                'off': 1,
+                'color': 'white',
+                'glow': ['0 0 80px Red', '0 0 30px FireBrick', '0 0 6px DarkRed']
+            });
+        });
+    </script>
+
+
+
+    <title>Document</title>
+
+    <ul class="nav justify-content-end fixed-top">
+        <ul id="menu">
+            <li data-menuanchor="박스오피스" class="active"><a href="#박스오피스" class="me">박스오피스</a></li>
+            <li data-menuanchor="액션" class="active"><a href="#액션" class="me">액션</a></li>
+            <li data-menuanchor="모험" class="active"><a href="#모험" class="me">모험</a></li>
+            <li data-menuanchor="애니" class="active"><a href="#애니" class="me">애니</a></li>
+            <li data-menuanchor="코미디" class="active"><a href="#코미디" class="me">코미디</a></li>
+            <li data-menuanchor="범죄" class="active"><a href="#범죄" class="me">범죄</a></li>
+            <li data-menuanchor="드라마" class="active"><a href="#드라마" class="me">드라마</a></li>
+            <li data-menuanchor="판타지" class="active"><a href="#판타지" class="me">판타지</a></li>
+            <li data-menuanchor="공포" class="active"><a href="#공포" class="me">공포</a></li>
+            <li data-menuanchor="SF" class="active"><a href="#SF" class="me">SF</a></li>
+        </ul>
+        <li class="nav-item">
+            <a class="nav-link  " href="{% url 'movies:index' %} " style="text-decoration:none">HOME</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:profile' user.pk %}" style="text-decoration:none">{{ user.username }} </a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="{% url 'accounts:logout' %} " style="text-decoration:none">LOGOUT</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:profile' user.pk %}" style="text-decoration:none">PROFILE</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:signup' %}" style="text-decoration:none">SIGN UP</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:login' %}" style="text-decoration:none">LOGIN</a>
+        </li>
+        {% endif %}
+    </ul>
+</head>
+
+<body>
+    <style>
+        @font-face {
+            font-family: SCDream6;
+            src: url("{% static 'fonts/SCDream6.otf' %}") format('truetype');
+        }
+        
+        body {
+            background-color: #555555;
+            font-family: SCDream6;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    {% block body %} {% endblock %}
+</body>
+
+</html>

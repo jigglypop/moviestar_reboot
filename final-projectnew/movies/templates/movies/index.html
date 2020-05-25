@@ -1,0 +1,687 @@
+{% extends 'movies/base.html' %} {% load bootstrap4 %} {% load static %} {% block body %}
+
+<link rel="stylesheet" href="{% static 'css/html5reset-1.6.1.css' %}" type="text/css" media="screen,print">
+<link rel="stylesheet" rel="stylesheet" href="{% static 'css/novacancy.css' %}" type="text/css">
+
+<style>
+    h1 {
+        font-size: 150px;
+        font-family: SCDream6;
+        color: #fff;
+        padding: 0;
+        text-shadow: 0 15px 25px rgb(0, 0, 0);
+    }
+    
+    .li_preview {
+        top: 20%;
+    }
+    
+    .section {
+        text-align: center;
+        overflow: hidden;
+    }
+    
+    #myVideo {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-size: 100% 100%;
+        background-color: black;
+        /* in case the video doesn't fit the whole page*/
+        background-image: /* our video */
+        ;
+        background-position: center center;
+        background-size: contain;
+        object-fit: cover;
+        /*cover video background */
+        z-index: 3;
+    }
+    
+    #myVideo1 {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-size: 100% 100%;
+        background-color: black;
+        /* in case the video doesn't fit the whole page*/
+        background-image: /* our video */
+        ;
+        background-position: center center;
+        background-size: contain;
+        object-fit: cover;
+        /*cover video background */
+        z-index: 3;
+    }
+    
+    .section .layer {
+        position: absolute;
+        z-index: 4;
+        width: 100%;
+        left: 0;
+        -webkit-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    
+    .section {
+        overflow: hidden;
+    }
+    
+    #infoMenu li a {
+        color: #fff;
+    }
+    
+    video::-webkit-media-controls {
+        display: none !important;
+    }
+    
+    .layer {
+        font-family: SCDream6;
+        top: 50px;
+        left: 3%;
+        padding: 50px 300px 20px 300px;
+        background: rgba( 0, 0, 0, 0.7);
+        margin: 10 auto;
+        text-align: center;
+        width: 800px;
+        height: 850px;
+        text-shadow: 0 5px 15px rgb(0, 0, 0);
+    }
+    
+    .A0 li a {
+        font-size: 15px;
+        color: #ffffff;
+        text-shadow: 0 15px 25px rgb(0, 0, 0);
+    }
+    
+    .A1 li a {
+        font-size: 15px;
+        color: rgb(255, 223, 204);
+        text-shadow: 0 15px 25px rgb(0, 0, 0);
+    }
+    
+    .A2 li a {
+        font-size: 20px;
+        color: rgb(255, 255, 231);
+        text-shadow: 0 15px 25px rgb(0, 0, 0);
+    }
+    
+    .A3 li a {
+        font-size: 20px;
+        color: rgb(255, 230, 230);
+        text-shadow: 0 15px 25px rgb(0, 0, 0);
+    }
+    
+    .A4 li a {
+        font-size: 25px;
+        color: rgb(235, 255, 237);
+        text-shadow: 0 15px 25px rgb(0, 0, 0);
+    }
+    
+    .A5 li a {
+        font-size: 25px;
+        color: rgb(233, 248, 255);
+        text-shadow: 0 15px 25px rgb(0, 0, 0);
+    }
+    
+    .A6 li a {
+        font-size: 30px;
+        color: rgb(246, 242, 255);
+        text-shadow: 0 15px 25px rgb(0, 0, 0);
+    }
+    
+    .A7 li a {
+        font-size: 30px;
+        color: rgb(254, 255, 219);
+        text-shadow: 0 15px 25px rgb(0, 0, 0);
+    }
+    
+    .A8 li a {
+        font-size: 35px;
+        color: rgb(252, 245, 227);
+        text-shadow: 0 15px 25px rgb(0, 0, 0);
+    }
+    
+    .A9 li a {
+        font-size: 35px;
+        color: rgb(250, 255, 231);
+        text-shadow: 0 15px 25px rgb(0, 0, 0);
+    }
+</style>
+
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        background-color: #333;
+    }
+    
+    #wrap {
+        margin: 100px auto;
+        width: 2000px;
+    }
+    
+    {
+        % comment %
+    }
+    
+    #nav li {
+        float: left;
+    }
+    
+    {
+        % endcomment %
+    }
+    
+    .nav img {
+        width: 100px;
+    }
+    
+    .nav a {
+        display: inline-block;
+        border: 2px solid #bbb;
+        margin: 0 6px 10px 0;
+        -webkit-border-radius: 5px;
+        opacity: 0.4;
+    }
+    
+    .nav a.active {
+        border: 2px solid #fff;
+        opacity: 1;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.nav a').mouseover(function(e) {
+            e.preventDefault();
+            $('.nav a').removeClass('active');
+            $(this).addClass('active');
+            img_url = $(this).attr('href');
+            $('#window img').attr('src', img_url);
+        });
+    })
+</script>
+
+<div id="fullpage">
+    <div class="section" id="section0">
+        <div class="layer">
+            <h1 id="vacancy">BOXOFFICE</h1>
+            {% for movie in movie0 %}
+            <ul class='{{movie.css}}'>
+                <li class="li_preview">
+                    <a href="{{movie.poster_url}}" class="preview" title="{{movie.title}}">
+                                #</a><a href="{% url 'movies:detail' movie.pk %}" class="shop">{{movie.title}}</a></li>
+            </ul>{% endfor %}
+
+            <div id="wrap" class="container">
+                <div class="row">
+                    {% for movie in movie0 %}
+                    <div class="col-xs-12">
+                        <ul class="nav">
+                            <li>
+                                <a href="{% url 'movies:detail' movie.pk %}"><img src="{{movie.poster_url}}" alt="" class="active" /></a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+        <video id="myVideo" loop muted data-autoplay>
+            <source src="{% static 'video/3.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+
+
+    <div class="section" id="section0">
+        <div class="layer">
+            <h1 id="vacancy1">ACTION</h1>
+            {% for movie in movie1 %}
+            <ul class='{{movie.css}}'>
+                <li class="li_preview">
+                    <a href="{{movie.poster_url}}" class="preview" title="{{movie.title}}">
+                                #</a><a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a></li>
+            </ul>{% endfor %}
+            <div id="wrap" class="container">
+                <div class="row">
+                    {% for movie in movie1 %}
+                    <div class="col-xs-12">
+                        <ul class="nav">
+                            <li>
+                                <a href="{% url 'movies:detail' movie.pk %}"><img src="{{movie.poster_url}}" alt="" class="active" /></a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <video id="myVideo1" loop muted data-autoplay>
+            <source src="{% static 'video/2.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="section" id="section0">
+        <div class="layer">
+            <h1 id="vacancy2">ADVENTURE</h1>
+            {% for movie in movie2 %}
+            <ul class='{{movie.css}}'>
+                <li class="li_preview">
+                    <a href="{{movie.poster_url}}" class="preview" title="{{movie.title}}">
+                                #</a><a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a></li>
+            </ul>{% endfor %}
+
+            <div id="wrap" class="container">
+                <div class="row">
+                    {% for movie in movie2 %}
+                    <div class="col-xs-12">
+                        <ul class="nav">
+                            <li>
+                                <a href="{% url 'movies:detail' movie.pk %}"><img src="{{movie.poster_url}}" alt="" class="active" /></a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <video id="myVideo" loop muted data-autoplay>
+            <source src="{% static 'video/3.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="section" id="section0">
+        <div class="layer">
+            <h1 id="vacancy3">ANIMATION</h1>
+            {% for movie in movie3 %}
+            <ul class='{{movie.css}}'>
+                <li class="li_preview">
+                    <a href="{{movie.poster_url}}" class="preview" title="{{movie.title}}">
+                                #</a><a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a></li>
+            </ul>{% endfor %}
+
+            <div id="wrap" class="container">
+                <div class="row">
+                    {% for movie in movie3 %}
+                    <div class="col-xs-12">
+                        <ul class="nav">
+                            <li>
+                                <a href="{% url 'movies:detail' movie.pk %}"><img src="{{movie.poster_url}}" alt="" class="active" /></a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <video id="myVideo" loop muted data-autoplay>
+            <source src="{% static 'video/3.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="section" id="section0">
+        <div class="layer">
+            <h1 id="vacancy4">COMEDY</h1>
+            {% for movie in movie4 %}
+            <ul class='{{movie.css}}'>
+                <li class="li_preview">
+                    <a href="{{movie.poster_url}}" class="preview" title="{{movie.title}}">
+                                #</a><a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a></li>
+            </ul>{% endfor %}
+
+
+            <div id="wrap" class="container">
+                <div class="row">
+                    {% for movie in movie4 %}
+                    <div class="col-xs-12">
+                        <ul class="nav">
+                            <li>
+                                <a href="{% url 'movies:detail' movie.pk %}"><img src="{{movie.poster_url}}" alt="" class="active" /></a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <video id="myVideo" loop muted data-autoplay>
+            <source src="{% static 'video/2.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+
+
+    <div class="section" id="section0">
+        <div class="layer">
+            <h1 id="vacancy5">CRIME</h1>
+            {% for movie in movie5 %}
+            <ul class='{{movie.css}}'>
+                <li class="li_preview">
+                    <a href="{{movie.poster_url}}" class="preview" title="{{movie.title}}">
+                                #</a><a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a></li>
+            </ul>{% endfor %}
+
+
+            <div id="wrap" class="container">
+                <div class="row">
+                    {% for movie in movie5 %}
+                    <div class="col-xs-12">
+                        <ul class="nav">
+                            <li>
+                                <a href="{% url 'movies:detail' movie.pk %}"><img src="{{movie.poster_url}}" alt="" class="active" /></a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <video id="myVideo" loop muted data-autoplay>
+            <source src="{% static 'video/2.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+
+
+    <div class="section" id="section0">
+        <div class="layer">
+            <h1 id="vacancy6">DRAMA</h1>
+            {% for movie in movie7 %}
+            <ul class='{{movie.css}}'>
+                <li class="li_preview">
+                    <a href="{{movie.poster_url}}" class="preview" title="{{movie.title}}">
+                                #</a><a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a></li>
+            </ul>{% endfor %}
+
+
+            <div id="wrap" class="container">
+                <div class="row">
+                    {% for movie in movie7 %}
+                    <div class="col-xs-12">
+                        <ul class="nav">
+                            <li>
+                                <a href="{% url 'movies:detail' movie.pk %}"><img src="{{movie.poster_url}}" alt="" class="active" /></a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <video id="myVideo" loop muted data-autoplay>
+            <source src="{% static 'video/2.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="section" id="section0">
+        <div class="layer">
+            <h1 id="vacancy7">FANTAGY</h1>
+            {% for movie in movie9 %}
+            <ul class='{{movie.css}}'>
+                <li class="li_preview">
+                    <a href="{{movie.poster_url}}" class="preview" title="{{movie.title}}">
+                                #</a><a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a></li>
+            </ul>{% endfor %}
+
+
+            <div id="wrap" class="container">
+                <div class="row">
+                    {% for movie in movie9 %}
+                    <div class="col-xs-12">
+                        <ul class="nav">
+                            <li>
+                                <a href="{% url 'movies:detail' movie.pk %}"><img src="{{movie.poster_url}}" alt="" class="active" /></a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <video id="myVideo" loop muted data-autoplay>
+            <source src="{% static 'video/2.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="section" id="section0">
+        <div class="layer">
+            <h1 id="vacancy8">HORROR</h1>
+            {% for movie in movie11 %}
+            <ul class='{{movie.css}}'>
+                <li class="li_preview">
+                    <a href="{{movie.poster_url}}" class="preview" title="{{movie.title}}">
+                                #</a><a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a></li>
+            </ul>{% endfor %}
+
+
+            <div id="wrap" class="container">
+                <div class="row">
+                    {% for movie in movie11 %}
+                    <div class="col-xs-12">
+                        <ul class="nav">
+                            <li>
+                                <a href="{% url 'movies:detail' movie.pk %}"><img src="{{movie.poster_url}}" alt="" class="active" /></a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <video id="myVideo" loop muted data-autoplay>
+            <source src="{% static 'video/3.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="section" id="section0">
+        <div class="layer">
+            <h1 id="vacancy9">SF</h1>
+            {% for movie in movie15 %}
+            <ul class='{{movie.css}}'>
+                <li class="li_preview">
+                    <a href="{{movie.poster_url}}" class="preview" title="{{movie.title}}">
+                                #</a><a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a></li>
+            </ul>{% endfor %}
+
+            <div id="wrap" class="container">
+                <div class="row">
+                    {% for movie in movie15 %}
+                    <div class="col-xs-12">
+                        <ul class="nav">
+                            <li>
+                                <a href="{% url 'movies:detail' movie.pk %}"><img src="{{movie.poster_url}}" alt="" class="active" /></a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <video id="myVideo" loop muted data-autoplay>
+            <source src="{% static 'video/2.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+
+
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+<script src="{% static 'js/jquery.gridder.js' %}"></script>
+<script>
+    jQuery(document).ready(function($) {
+        // REMOVE AND ADD CLICK EVENT
+        $('.doAddItem').on('click', function() {
+            $(".gridder").data('gridderExpander').gridderAddItem('TEST');
+        });
+        // Call Gridder
+        $(".gridder").gridderExpander({
+            scrollOffset: 60,
+            scrollTo: "panel", // "panel" or "listitem"
+            animationSpeed: 400,
+            animationEasing: "easeInOutExpo",
+            onStart: function() {
+                console.log("Gridder Inititialized");
+            },
+            onExpanded: function(object) {
+                console.log("Gridder Expanded");
+            },
+            onChanged: function(object) {
+                console.log("Gridder Changed");
+            },
+            onClosed: function() {
+                console.log("Gridder Closed");
+            }
+        });
+    });
+</script>
+<script type="text/javascript" src="{% static 'js/fullpage.js' %}"></script>
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        anchors: [
+            '박스오피스',
+            '액션',
+            '모험',
+            '애니',
+            '코미디',
+            '범죄',
+            '드라마',
+            '판타지',
+            '공포',
+            'SF'
+        ],
+        menu: '#menu',
+        loopTop: true,
+        loopBottom: true
+    });
+</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+<script type="text/javascript" src="{% static 'js/tooltipster.bundle.min.js' %}"></script>
+<script>
+    $('.tooltip').tooltipster({
+        animation: 'fade',
+        delay: 200,
+        theme: 'tooltipster-punk',
+        trigger: 'click'
+    });
+</script>
+
+<script type="text/javascript" src="{% static 'js/jquery.novacancy.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#no').novacancy({
+            'reblinkProbability': 0.1,
+            'blinkMin': 0.2,
+            'blinkMax': 0.6,
+            'loopMin': 8,
+            'loopMax': 10,
+            'color': '#ffffff',
+            'glow': ['0 0 80px #ffffff', '0 0 30px #008000', '0 0 6px #0000ff']
+        });
+
+        $('#vacancy').novacancy({
+            'blink': 1,
+            'off': 1,
+            'color': 'white',
+            'glow': ['0 0 80px Red', '0 0 30px FireBrick', '0 0 6px DarkRed']
+        });
+        $('#vacancy1').novacancy({
+            'blink': 1,
+            'off': 1,
+            'color': 'orange',
+            'glow': ['0 0 80px Red', '0 0 30px FireBrick', '0 0 6px DarkRed']
+        });
+        $('#vacancy2').novacancy({
+            'blink': 1,
+            'off': 1,
+            'color': 'red',
+            'glow': ['0 0 80px Red', '0 0 30px FireBrick', '0 0 6px DarkRed']
+        });
+        $('#vacancy3').novacancy({
+            'blink': 1,
+            'off': 1,
+            'color': 'yellow',
+            'glow': ['0 0 80px Red', '0 0 30px FireBrick', '0 0 6px DarkRed']
+        });
+        $('#vacancy4').novacancy({
+            'blink': 1,
+            'off': 1,
+            'color': 'pink',
+            'glow': ['0 0 80px Red', '0 0 30px FireBrick', '0 0 6px DarkRed']
+        });
+        $('#vacancy5').novacancy({
+            'blink': 1,
+            'off': 1,
+            'color': 'white',
+            'glow': ['0 0 80px Red', '0 0 30px FireBrick', '0 0 6px DarkRed']
+        });
+        $('#vacancy6').novacancy({
+            'blink': 1,
+            'off': 1,
+            'color': 'red',
+            'glow': ['0 0 80px Red', '0 0 30px FireBrick', '0 0 6px DarkRed']
+        });
+        $('#vacancy7').novacancy({
+            'blink': 1,
+            'off': 1,
+            'color': 'orange',
+            'glow': ['0 0 80px Red', '0 0 30px FireBrick', '0 0 6px DarkRed']
+        });
+        $('#vacancy8').novacancy({
+            'blink': 1,
+            'off': 1,
+            'color': 'red',
+            'glow': ['0 0 80px Red', '0 0 30px FireBrick', '0 0 6px DarkRed']
+        });
+        $('#vacancy9').novacancy({
+            'blink': 1,
+            'off': 1,
+            'color': 'orange',
+            'glow': ['0 0 80px Red', '0 0 30px FireBrick', '0 0 6px DarkRed']
+        });
+
+    });
+</script>
+
+
+
+
+<style>
+    h4 {
+        color: #D4D4D4;
+        font-size: 80px;
+        text-shadow: 0 5px 15px rgb(0, 0, 0);
+    }
+    
+    a {
+        color: #D4D4D4;
+        font-size: 20px;
+        text-shadow: 0 5px 15px rgb(0, 0, 0);
+    }
+    
+    body {
+        background-color: black;
+    }
+</style>
+{% endblock %}
