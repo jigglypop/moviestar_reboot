@@ -51,7 +51,7 @@ defusedxml==0.6.0
 diff-match-patch==20181111
 distributed==2.11.0
 dj-database-url==0.5.0
-Django==2.2.4
+Django==2.2.21
 django-allauth==0.40.0
 django-appconf==1.0.3
 django-bootstrap4==1.0.1
